@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @description:
  **/
 public interface BookRepository extends JpaRepository<Book,Integer> {
+        //关于修改 jparepository会自动根据id是否存在来判断增加还是修改 save方法
 
 }

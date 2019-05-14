@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.List;
 /**
  * @AUTHOR: Guozhi
  * @DATE : 2019/5/14
@@ -18,9 +18,16 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping(value = "/findBook/{id}")
-    public Book findBook(@PathVariable("id") Integer id)
+    @GetMapping(value = "/allBook")
+    public List<Book> findBook()
     {
-        return bookService.findBookById(id);
+        return bookService.findAllBook();
+    }
+
+    @GetMapping(value="/saveOrUpdateBook/")
+    public void saveOrUpdateBook()
+    {
+        //Book book=new Book(0,"test",1,1,1,"test","#test","test","test");
+        //bookService.saveOrUpdateBook(book);
     }
 }

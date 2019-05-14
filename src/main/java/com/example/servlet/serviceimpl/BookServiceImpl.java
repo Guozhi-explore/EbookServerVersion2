@@ -3,6 +3,7 @@ package com.example.servlet.serviceimpl;
 import com.example.servlet.dao.BookDao;
 import com.example.servlet.entity.Book;
 import com.example.servlet.service.BookService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,13 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
     @Override
-    public Book findBookById(Integer id)
+    public List<Book> findAllBook()
     {
-        return bookDao.findOne(id);
+        return bookDao.findall();
+    }
+    @Override
+    public void saveOrUpdateBook(Book book)
+    {
+        bookDao.save(book);
     }
 }

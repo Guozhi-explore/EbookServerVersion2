@@ -2,6 +2,7 @@ package com.example.servlet.dao;
 
 
 import com.example.servlet.entity.Book;
+import java.util.List;
 
 /**
  * @AUTHOR: Guozhi
@@ -9,5 +10,6 @@ import com.example.servlet.entity.Book;
  * @description:
  **/
 public interface BookDao {
-    Book findOne(Integer id);
+    List<Book> findall();
+    void save(Book book);
 }

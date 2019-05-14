@@ -3,6 +3,8 @@ package com.example.servlet.daoimpl;
 import com.example.servlet.dao.BookDao;
 import com.example.servlet.entity.Book;
 import com.example.servlet.repository.BookRepository;
+
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +19,13 @@ public class BookDaoImpl implements BookDao {
     private BookRepository bookRepository;
 
     @Override
-    public Book findOne(Integer id){
-        return bookRepository.getOne(id);
+    public List<Book> findall(){
+        return bookRepository.findAll();
+    }
+
+    @Override
+    public void save(Book book)
+    {
+        bookRepository.save(book);
     }
 }

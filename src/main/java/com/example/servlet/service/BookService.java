@@ -1,6 +1,7 @@
 package com.example.servlet.service;
 
 import com.example.servlet.entity.Book;
+import java.util.List;
 
 /**
  * @AUTHOR: Guozhi
@@ -8,5 +9,6 @@ import com.example.servlet.entity.Book;
  * @description:
  **/
 public interface BookService {
-    Book findBookById(Integer id);
+    List<Book> findAllBook();
+    void saveOrUpdateBook(Book book);
 }
