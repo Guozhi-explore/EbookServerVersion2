@@ -27,7 +27,7 @@ public class BookController {
     @GetMapping(value="/saveOrUpdateBook/")
     public void saveOrUpdateBook()
     {
-        //Book book=new Book(0,"test",1,1,1,"test","#test","test","test");
-        //bookService.saveOrUpdateBook(book);
+        Book book=new Book(14,"testtest",1,1,1,"test","#test","test","test");
+        bookService.saveOrUpdateBook(book);
     }
 }

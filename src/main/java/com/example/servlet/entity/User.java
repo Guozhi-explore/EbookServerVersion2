@@ -19,22 +19,37 @@ import javax.persistence.*;
         property = "user_id"
 )
 public class User {
-    private Integer uesr_id;
+    private Integer user_id;
     private String account;
     private String password;
     private String mailbox;
     private String status;
     private Boolean ismanager;
 
+    public User(Integer user_id,String account,String password,String mailbox,String status,Boolean ismanager)
+    {
+        this.user_id=user_id;
+        this.account=account;
+        this.password=password;
+        this.mailbox=mailbox;
+        this.ismanager=ismanager;
+        this.status=status;
+    }
+
+    public User()
+    {
+
+    }
 
     @Id
     @Column(name="user_id")
-    public Integer getUesr_id() {
-        return uesr_id;
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    public Integer getUser_id() {
+        return user_id;
     }
 
     @Basic
-    @Column(name="user_id")
+    @Column(name="account")
     public String getAccount(){
         return account;
     }
@@ -83,7 +98,7 @@ public class User {
         this.status = status;
     }
 
-    public void setUesr_id(Integer uesr_id) {
-        this.uesr_id = uesr_id;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 }
