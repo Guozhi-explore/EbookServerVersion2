@@ -25,6 +25,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void saveOrUpdateUser(User user)
     {
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
     }
 }
