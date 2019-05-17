@@ -1,7 +1,6 @@
 package com.example.servlet.Controller;
 
 
-import com.example.servlet.entity.BookItem;
 import com.example.servlet.entity.Order;
 import com.example.servlet.entity.User;
 import com.example.servlet.service.UserService;
@@ -42,16 +41,7 @@ public class UserController {
     {
         return userService.findUserById(user_id).getOrderList();
     }
-    /**
-     *
-     * @param user_id
-     * @return
-     */
-    @GetMapping(value = "/userCart")
-    public List<BookItem> findUserCart(Integer user_id)
-    {
-        return userService.getCartList(userService.findUserById(user_id));
-    }
+
 
     /**
      *  request for login
@@ -79,20 +69,8 @@ public class UserController {
     {
         User user=new User(0,account,password,mailbox,status,ismanager);
         return userService.JudgeRegister(user);
-
     }
 
-    /**
-     *
-     * @param user_id
-     * @param book_id
-     * @param number
-     */
-    @GetMapping(value = "saveUserCart")
-    public void saveUserCart(Integer user_id,Integer book_id,Integer number)
-    {
-        userService.saveUserCart(user_id,book_id,number);
-    }
 
 
 }
