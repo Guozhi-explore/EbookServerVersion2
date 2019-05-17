@@ -44,15 +44,4 @@ public class OrderController {
         return orderService.allOrder();
     }
 
-    @GetMapping(value = "test")
-    public void test()
-    {
-        List<Order> orderList=orderService.allOrder();
-        Integer size=orderList.size();
-        OrderItem orderItem=new OrderItem(orderList.get(size-1),bookService.selectBookById(2),1);
-
-    }
-
-
-
 }

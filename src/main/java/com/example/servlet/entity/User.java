@@ -22,8 +22,6 @@ public class User {
     private String status;
     private Boolean ismanager;
     private List<Order> orderList;
-    private List<Book> cartBookList;
-    private List<Integer> cartBookNumberList;
 
     public User(Integer user_id,String account,String password,String mailbox,String status,Boolean ismanager)
     {
@@ -82,27 +80,6 @@ public class User {
     @JoinTable(name="orders",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name="order_id"))
     public List<Order> getOrderList() {
         return orderList;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="cart",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name="book_id"))
-    public List<Book> getCartBookList() {
-        return cartBookList;
-    }
-
-    @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name="cart",joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "user_id")})
-    @Column(name = "number")
-    public List<Integer> getCartBookNumberList() {
-        return cartBookNumberList;
-    }
-
-    public void setCartBookList(List<Book> cartBookList) {
-        this.cartBookList = cartBookList;
-    }
-
-    public void setCartBookNumberList(List<Integer> cartBookNumberList) {
-        this.cartBookNumberList = cartBookNumberList;
     }
 
     public void setAccount(String account) {

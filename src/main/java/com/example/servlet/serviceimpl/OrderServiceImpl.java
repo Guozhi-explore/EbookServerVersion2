@@ -66,5 +66,13 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setOrderItems(orderItemList);
         orderDao.saveOrder(order);              //增加order订单项属性,save again
+
+        for(int i=0;i<books.size();++i)
+        {
+            Book book=bookService.selectBookById(books.get(i));
+            book.setSales(book.getSales()+bookNum.get(i));
+            book.setAmount(book.getAmount()-bookNum.get(i));
+            bookService.saveOrUpdateBook(book);
+        }
     }
 }

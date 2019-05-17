@@ -26,7 +26,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public void save(Book book)
     {
-        bookRepository.save(book);
+        bookRepository.saveAndFlush(book);
     }
 
     @Override
