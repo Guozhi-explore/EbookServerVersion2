@@ -1,11 +1,10 @@
 package com.example.servlet.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,21 +15,32 @@ import java.util.List;
 @Entity
 @Table(name="orders",schema = "ebook",catalog = "")
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "order_id"
-)
 public class Order {
 
 
     private int order_id;
-    private List<Book> bookList;
-    private List<Integer> bookNum=new ArrayList<Integer>();
+    private List<OrderItem> orderItems;
     private String orderTime;
     private Integer orderMoney;
+    private Integer user_id;
+
+    public Order(Integer user_id,Integer orderMoney,List<OrderItem> orderItemList)
+    {
+        this.user_id=user_id;
+        this.order_id=0;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 格式化时间
+        Date date = new Date();
+        this.orderItems=null;
+        this.orderTime=sdf.format(date);
+        this.orderMoney=orderMoney;
+        this.orderItems=null;
+        return;
+    }
+    public Order(){}
 
     @Id
     @Column(name = "order_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getOrder_id() {
         return order_id;
     }
@@ -59,25 +69,24 @@ public class Order {
         this.orderMoney = orderMoney;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="order_item",joinColumns = @JoinColumn(name = "order_id"),inverseJoinColumns = @JoinColumn(name="book_id"))
-    public List<Book> getBookList()
-    {
-        return bookList;
+    //@OneToMany(fetch = FetchType.LAZY)
+    //@JoinTable(name="order_item",joinColumns = @JoinColumn(name = "order_id",referencedColumnName = "order_id"))
+    @OneToMany(mappedBy = "PK.order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<OrderItem> getOrderItems(){
+        return orderItems;
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name="order_item",joinColumns = {@JoinColumn(name = "order_id",referencedColumnName = "order_id")})
-    @Column(name = "number")
-    public List<Integer> getBookNum(){
-        return bookNum;
+    @Basic
+    @Column(name = "user_id")
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setBookNum(List<Integer> bookNum) {
-        this.bookNum = bookNum;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 }

@@ -28,4 +28,10 @@ public class BookDaoImpl implements BookDao {
     {
         bookRepository.save(book);
     }
+
+    @Override
+    public Book selectBookById(Integer ID)
+    {
+        return bookRepository.getOne(ID);
+    }
 }

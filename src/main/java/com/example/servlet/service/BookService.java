@@ -11,4 +11,5 @@ import java.util.List;
 public interface BookService {
     List<Book> findAllBook();
     void saveOrUpdateBook(Book book);
+    Book selectBookById(Integer ID);
 }

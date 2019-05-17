@@ -1,12 +1,16 @@
 package com.example.servlet.serviceimpl;
 
+import com.example.servlet.dao.BookDao;
 import com.example.servlet.dao.UserDao;
+import com.example.servlet.entity.BookItem;
+import com.example.servlet.entity.Order;
 import com.example.servlet.entity.User;
 import com.example.servlet.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.PushBuilder;
 import javax.validation.constraints.Null;
 
 /**
@@ -18,6 +22,7 @@ import javax.validation.constraints.Null;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+    private BookDao bookDao;
 
     @Override
     public List<User> findAllUser(){
@@ -55,5 +60,26 @@ public class UserServiceImpl implements UserService {
         }
         this.saveOrUpdateUser(user);                   //hibernate 会将user更新
         return user.getUser_id();
+    }
+
+    @Override
+    public User findUserById(Integer ID)
+    {
+        return userDao.findUserById(ID);
+    }
+    @Override
+    public List<BookItem> getCartList(User user)
+    {
+        return userDao.getCartList(user);
+    }
+
+    @Override
+    public void saveUserCart(Integer user_id,Integer book_id,Integer number)
+    {
+        User user=userDao.findUserById(user_id);
+        List<BookItem> cartList=userDao.getCartList(user);
+        BookItem bookItem=new BookItem(bookDao.selectBookById(book_id),number);
+        cartList.add(bookItem);
+       // user.set
     }
 }

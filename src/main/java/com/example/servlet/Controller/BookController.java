@@ -30,4 +30,15 @@ public class BookController {
         Book book=new Book(14,"testtest",1,1,1,"test","#test","test","test");
         bookService.saveOrUpdateBook(book);
     }
+
+    /**
+     *
+     * @param book_id
+     * @return
+     */
+    @GetMapping(value = "/selectBookById")
+    public Book selectBookById(Integer book_id)
+    {
+        return bookService.selectBookById(book_id);
+    }
 }

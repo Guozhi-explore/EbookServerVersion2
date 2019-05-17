@@ -1,8 +1,7 @@
 package com.example.servlet.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -83,19 +82,19 @@ public class User {
         return status;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name="orders",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name="order_id"))
     public List<Order> getOrderList() {
         return orderList;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name="cart",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name="book_id"))
     public List<Book> getCartBookList() {
         return cartBookList;
     }
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name="cart",joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "user_id")})
     @Column(name = "number")
     public List<Integer> getCartBookNumberList() {
@@ -137,4 +136,5 @@ public class User {
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
     }
+
 }

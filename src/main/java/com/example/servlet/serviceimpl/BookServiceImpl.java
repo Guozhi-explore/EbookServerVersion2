@@ -28,4 +28,9 @@ public class BookServiceImpl implements BookService {
     {
         bookDao.save(book);
     }
+    @Override
+    public Book selectBookById(Integer ID)
+    {
+        return bookDao.selectBookById(ID);
+    }
 }
