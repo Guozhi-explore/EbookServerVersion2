@@ -1,6 +1,7 @@
 package com.example.servlet.dao;
 
 import com.example.servlet.entity.Order;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface OrderDao {
     List<Order> allOrder();
     List<Order> selectUserOrder(Integer user_id,String time1,String time2);
     Order selectOrderById(Integer order_id);
+    List<Integer> selectOrder(String time1,String tim2);
 }

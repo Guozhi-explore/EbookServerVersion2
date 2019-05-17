@@ -4,6 +4,7 @@ import com.example.servlet.dao.OrderDao;
 import com.example.servlet.entity.Order;
 import com.example.servlet.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,5 +41,10 @@ public class OrderDaoImpl implements OrderDao {
     public Order selectOrderById(Integer order_id)
     {
         return orderRepository.getOne(order_id);
+    }
+    @Override
+    public List<Integer> selectOrder(String time1,String time2)
+    {
+        return null;
     }
 }
