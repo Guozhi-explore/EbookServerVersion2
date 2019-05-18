@@ -24,13 +24,27 @@ public class BookServiceImpl implements BookService {
         return bookDao.findall();
     }
     @Override
-    public void saveOrUpdateBook(Book book)
+    public void updateBook(Integer book_id,String name,String author,String  isbn,String abstrac,String img_src,Integer price,Integer amount,Integer sales)
     {
+        Book book=new Book(book_id,name,price,amount,sales,author,isbn,abstrac,img_src);
         bookDao.save(book);
     }
     @Override
     public Book selectBookById(Integer ID)
     {
         return bookDao.selectBookById(ID);
+    }
+
+    @Override
+    public void addBook(String name,String author,String isbn,String abstrac,String img_src,Integer price,Integer amount)
+    {
+        Book book=new Book(0,name,price,amount,0,author,isbn,abstrac,img_src);
+        bookDao.save(book);
+    }
+
+    @Override
+    public void deleteBook(Integer ID)
+    {
+        bookDao.deleteBook(ID);
     }
 }

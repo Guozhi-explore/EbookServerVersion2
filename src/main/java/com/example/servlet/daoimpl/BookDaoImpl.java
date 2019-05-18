@@ -34,4 +34,10 @@ public class BookDaoImpl implements BookDao {
     {
         return bookRepository.getOne(ID);
     }
+
+    @Override
+    public void deleteBook(Integer ID)
+    {
+        bookRepository.deleteById(ID);
+    }
 }

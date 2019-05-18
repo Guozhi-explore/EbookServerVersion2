@@ -1,5 +1,6 @@
 package com.example.servlet.serviceimpl;
 
+import com.example.servlet.dao.BookDao;
 import com.example.servlet.dao.OrderDao;
 import com.example.servlet.entity.Book;
 import com.example.servlet.entity.Order;
@@ -24,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
 
     @Autowired
-    private BookService bookService;
+    private BookDao bookDao;
 
 
     @Override
@@ -50,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
         bookNumList=bookNum;
         for(int i=0;i<books.size();++i)
         {
-            bookList.add(bookService.selectBookById(books.get(i)));
+            bookList.add(bookDao.selectBookById(books.get(i)));
         }
         for(int i=0;i<bookList.size();++i)
         {
@@ -61,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderItems(orderItemList);
         for(int i=0;i<books.size();++i)
         {
-            orderItem=new OrderItem(order,bookService.selectBookById(books.get(i)),bookNumList.get(i));
+            orderItem=new OrderItem(order,bookDao.selectBookById(books.get(i)),bookNumList.get(i));
             orderItemList.add(orderItem);
         }
         order.setOrderItems(orderItemList);
@@ -69,10 +70,10 @@ public class OrderServiceImpl implements OrderService {
 
         for(int i=0;i<books.size();++i)
         {
-            Book book=bookService.selectBookById(books.get(i));
+            Book book=bookDao.selectBookById(books.get(i));
             book.setSales(book.getSales()+bookNum.get(i));
             book.setAmount(book.getAmount()-bookNum.get(i));
-            bookService.saveOrUpdateBook(book);
+            bookDao.save(book);
         }
     }
 }

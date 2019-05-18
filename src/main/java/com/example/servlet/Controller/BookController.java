@@ -24,11 +24,22 @@ public class BookController {
         return bookService.findAllBook();
     }
 
-    @GetMapping(value="/saveOrUpdateBook/")
-    public void saveOrUpdateBook()
+    /**
+     *
+     * @param book_id
+     * @param name
+     * @param author
+     * @param isbn
+     * @param abstrac
+     * @param img_src
+     * @param price
+     * @param amount
+     * @param sales
+     */
+    @GetMapping(value="/UpdateBook")
+    public void saveOrUpdateBook(Integer book_id,String name,String author,String  isbn,String abstrac,String img_src,Integer price,Integer amount,Integer sales)
     {
-        Book book=new Book(14,"testtest",1,1,1,"test","#test","test","test");
-        bookService.saveOrUpdateBook(book);
+        bookService.updateBook(book_id, name, author, isbn, abstrac, img_src, price, amount, sales);
     }
 
     /**
@@ -40,5 +51,30 @@ public class BookController {
     public Book selectBookById(Integer book_id)
     {
         return bookService.selectBookById(book_id);
+    }
+
+    /**
+     *
+     * @param name
+     * @param author
+     * @param isbn
+     * @param abstrac
+     * @param img_src
+     * @param price
+     * @param amount
+     */
+    @GetMapping(value = "/addBook")
+    public void addBook(String name,String author,String isbn,String abstrac,String img_src,Integer price,Integer amount){
+        bookService.addBook(name, author, isbn, abstrac, img_src, price, amount);
+    }
+
+    /**
+     *
+     * @param book_id
+     */
+    @GetMapping(value = "/deleteBook")
+    public void deleteBook(Integer book_id)
+    {
+        bookService.deleteBook(book_id);
     }
 }

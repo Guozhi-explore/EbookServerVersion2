@@ -10,6 +10,8 @@ import java.util.List;
  **/
 public interface BookService {
     List<Book> findAllBook();
-    void saveOrUpdateBook(Book book);
+    void updateBook(Integer book_id,String name,String author,String  isbn,String abstrac,String img_src,Integer price,Integer amount,Integer sales);
+    void addBook(String name,String author,String isbn,String abstrac,String img_src,Integer price,Integer amount);
     Book selectBookById(Integer ID);
+    void deleteBook(Integer ID);
 }
