@@ -1,6 +1,9 @@
 package com.example.servlet.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
@@ -15,6 +18,10 @@ import java.util.List;
 @Entity
 @Table(name="orders",schema = "ebook",catalog = "")
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "order_id"
+)
 public class Order {
 
 
@@ -72,6 +79,7 @@ public class Order {
     //@OneToMany(fetch = FetchType.LAZY)
     //@JoinTable(name="order_item",joinColumns = @JoinColumn(name = "order_id",referencedColumnName = "order_id"))
     @OneToMany(mappedBy = "PK.order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     public List<OrderItem> getOrderItems(){
         return orderItems;
     }

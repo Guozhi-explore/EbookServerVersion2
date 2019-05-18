@@ -1,6 +1,7 @@
 package com.example.servlet.Controller;
 
 
+import com.example.servlet.dao.UserDao;
 import com.example.servlet.entity.Order;
 import com.example.servlet.entity.User;
 import com.example.servlet.service.UserService;
@@ -26,9 +27,15 @@ public class UserController {
         return userService.findAllUser();
     }
 
-    @GetMapping(value = "/saveOrUpdateUser")
-    public void saveOrUpdateUser(){
-
+    /**
+     *
+     * @param user_id
+     * @param status
+     */
+    @GetMapping(value = "/changeUserStatus")
+    public void saveOrUpdateUser(Integer user_id,String status){
+            userService.saveOrUpdateUser(user_id,status);
+            System.out.println(status);
     }
 
     /**

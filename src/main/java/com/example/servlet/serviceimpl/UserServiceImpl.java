@@ -25,9 +25,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveOrUpdateUser(User user)
+    public void saveOrUpdateUser(Integer user_id,String status)
     {
+        User user=userDao.findUserById(user_id);
+        user.setStatus(status);
         userDao.saveOrUpdateUser(user);
+        System.out.println(status);
     }
 
     @Override
@@ -53,7 +56,7 @@ public class UserServiceImpl implements UserService {
             if(allUser.get(i).getAccount().equals(user.getAccount()))
                 return 0;
         }
-        this.saveOrUpdateUser(user);                   //hibernate 会将user更新
+        userDao.saveOrUpdateUser(user);                   //hibernate 会将user更新
         allUser=userDao.findAll();
         return allUser.get(allUser.size()-1).getUser_id(); //由于hibernate没有把user更新，使用这个蠢方法
     }

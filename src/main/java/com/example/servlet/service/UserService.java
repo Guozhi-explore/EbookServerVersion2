@@ -10,7 +10,7 @@ import java.util.List;
  **/
 public interface UserService {
     List<User> findAllUser();
-    void saveOrUpdateUser(User user);
+    void saveOrUpdateUser(Integer  user_id,String status);
     User JudgeLogin(String account,String password);
     Integer JudgeRegister(User user);
     User findUserById(Integer ID);
