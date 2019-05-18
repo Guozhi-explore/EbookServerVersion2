@@ -79,7 +79,7 @@ public class Order {
     //@OneToMany(fetch = FetchType.LAZY)
     //@JoinTable(name="order_item",joinColumns = @JoinColumn(name = "order_id",referencedColumnName = "order_id"))
     @OneToMany(mappedBy = "PK.order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonIgnoreProperties(value = "book")
     public List<OrderItem> getOrderItems(){
         return orderItems;
     }
