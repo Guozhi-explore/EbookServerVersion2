@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @AUTHOR: Guozhi
@@ -29,6 +30,7 @@ public class Book {
     private Integer sales;
     private String abstrac;
     private String img_src;
+    private List<OrderItem> orderItems;
 
     public Book()
     {
@@ -112,6 +114,16 @@ public class Book {
     @Column(name = "img_src")
     public String getImg_src(){
         return img_src;
+    }
+
+    @OneToMany(mappedBy = "PK.book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = "order")
+    public List<OrderItem> getOrderItems(){
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public void setAmount(Integer amount) {
