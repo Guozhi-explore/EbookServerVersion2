@@ -2,6 +2,7 @@ package com.example.servlet.serviceimpl;
 
 import com.example.servlet.dao.BookDao;
 import com.example.servlet.entity.Book;
+import com.example.servlet.entity.BookCombination;
 import com.example.servlet.service.BookService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
     @Override
-    public List<Book> findAllBook()
+    public List<BookCombination> findAllBook()
     {
         return bookDao.findall();
     }

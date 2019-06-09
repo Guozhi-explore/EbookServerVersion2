@@ -1,6 +1,7 @@
 package com.example.servlet.Controller;
 
 import com.example.servlet.entity.Book;
+import com.example.servlet.entity.BookCombination;
 import com.example.servlet.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping(value = "/allBook")
-    public List<Book> findBook()
+    public List<BookCombination> findBook()
     {
         return bookService.findAllBook();
     }
