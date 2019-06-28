@@ -3,7 +3,10 @@ package com.example.servlet.serviceimpl;
 import com.example.servlet.dao.BookDao;
 import com.example.servlet.entity.Book;
 import com.example.servlet.entity.BookCombination;
+import com.example.servlet.entity.staBook;
 import com.example.servlet.service.BookService;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +50,25 @@ public class BookServiceImpl implements BookService {
     public void deleteBook(Integer ID)
     {
         bookDao.deleteBook(ID);
+    }
+
+    @Override
+    public List<staBook> statisticBookData(String time1,String time2)
+    {
+        List<BookCombination> bookList=bookDao.findall();
+        List<staBook> staBookList=new ArrayList<staBook>();
+        for(int i=0;i<bookList.size();++i)
+        {
+            int orderTimes=0;
+            int orderMoney=0;
+            for(int j=0;j<bookList.get(i).getOrderItems().size();++j)
+            {
+                orderTimes+=bookList.get(i).getOrderItems().get(j).getNumber();
+            }
+            orderMoney=orderTimes*bookList.get(i).getPrice();
+            staBook stabook=new staBook(bookList.get(i).getBook_id(),bookList.get(i).getName(),orderTimes,orderMoney);
+            staBookList.add(stabook);
+        }
+        return staBookList;
     }
 }

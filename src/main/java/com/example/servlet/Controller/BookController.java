@@ -2,6 +2,7 @@ package com.example.servlet.Controller;
 
 import com.example.servlet.entity.Book;
 import com.example.servlet.entity.BookCombination;
+import com.example.servlet.entity.staBook;
 import com.example.servlet.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,5 +78,17 @@ public class BookController {
     public void deleteBook(Integer book_id)
     {
         bookService.deleteBook(book_id);
+    }
+
+    /**
+     *
+     * @param time1
+     * @param time2
+     * @return
+     */
+    @GetMapping(value = "/statisticBookData")
+    public List<staBook> statisticBookData(String time1,String time2)
+    {
+        return bookService.statisticBookData(time1,time2);
     }
 }

@@ -2,6 +2,7 @@ package com.example.servlet.service;
 
 import com.example.servlet.entity.Book;
 import com.example.servlet.entity.BookCombination;
+import com.example.servlet.entity.staBook;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface BookService {
     void addBook(String name,String author,String isbn,String abstrac,String img_src,Integer price,Integer amount);
     Book selectBookById(Integer ID);
     void deleteBook(Integer ID);
+    List<staBook> statisticBookData(String time1,String time2);
 }
