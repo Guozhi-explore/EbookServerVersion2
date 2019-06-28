@@ -5,13 +5,15 @@ import javax.persistence.Id;
 /**
  * @AUTHOR: Guozhi
  * @DATE : 2019/6/7
- * @description:
+ * @description: mongodb
  **/
 public class Comment {
     @Id
     private String id;
     private Integer book_id;
-    private String comment;
+    private Integer user_id;
+    private String time;
+    private String content;
 
     public String getId() {
         return id;
@@ -25,15 +27,31 @@ public class Comment {
         return book_id;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
     public void setBook_id(Integer book_id) {
         this.book_id = book_id;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }
