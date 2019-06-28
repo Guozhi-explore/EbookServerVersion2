@@ -3,10 +3,13 @@ package com.example.servlet.serviceimpl;
 import com.example.servlet.dao.BookDao;
 import com.example.servlet.entity.Book;
 import com.example.servlet.entity.BookCombination;
+import com.example.servlet.entity.Comment;
 import com.example.servlet.entity.staBook;
 import com.example.servlet.service.BookService;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,5 +75,15 @@ public class BookServiceImpl implements BookService {
             staBookList.add(stabook);
         }
         return staBookList;
+    }
+
+    @Override
+    public String uploadComment(Integer book_id, String user_id, String content) {
+        Date date=new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
+        sdf.applyPattern("yyyy-MM-dd HH:mm:ss");// a为am/pm的标记
+        Comment comment=new Comment(book_id,user_id,sdf.format(date),content);
+        bookDao.addComment(comment);
+        return "success";
     }
 }

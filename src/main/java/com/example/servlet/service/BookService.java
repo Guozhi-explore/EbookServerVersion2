@@ -18,4 +18,5 @@ public interface BookService {
     Book selectBookById(Integer ID);
     void deleteBook(Integer ID);
     List<staBook> statisticBookData(String time1,String time2);
+    String uploadComment(Integer book_id,String user_id,String content);
 }

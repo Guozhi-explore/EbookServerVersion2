@@ -3,6 +3,7 @@ package com.example.servlet.dao;
 
 import com.example.servlet.entity.Book;
 import com.example.servlet.entity.BookCombination;
+import com.example.servlet.entity.Comment;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface BookDao {
     void save(Book book);
     Book selectBookById(Integer ID);
     void deleteBook(Integer ID);
+    void addComment(Comment comment);
 }

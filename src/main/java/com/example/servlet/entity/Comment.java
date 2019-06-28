@@ -11,9 +11,16 @@ public class Comment {
     @Id
     private String id;
     private Integer book_id;
-    private Integer user_id;
+    private String user_id;
     private String time;
     private String content;
+
+    public Comment( Integer book_id, String user_id, String time, String content) {
+        this.book_id = book_id;
+        this.user_id = user_id;
+        this.time = time;
+        this.content = content;
+    }
 
     public String getId() {
         return id;
@@ -31,11 +38,11 @@ public class Comment {
         this.book_id = book_id;
     }
 
-    public Integer getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Integer user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 

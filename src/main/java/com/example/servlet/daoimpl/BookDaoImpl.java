@@ -57,4 +57,11 @@ public class BookDaoImpl implements BookDao {
     {
         bookRepository.deleteById(ID);
     }
+
+    @Override
+    public void addComment(Comment comment)
+    {
+        commentRepository.save(comment);
+    }
+
 }

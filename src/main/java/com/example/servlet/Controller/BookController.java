@@ -91,4 +91,18 @@ public class BookController {
     {
         return bookService.statisticBookData(time1,time2);
     }
+
+    /**
+     *
+     * @param book_id
+     * @param user_id
+     * @param content
+     * @return
+     */
+    @GetMapping(value = "/uploadComment")
+    public String uploadComment(Integer book_id,String user_id,String content)
+    {
+        return bookService.uploadComment(book_id,user_id,content);
+    }
+
 }
