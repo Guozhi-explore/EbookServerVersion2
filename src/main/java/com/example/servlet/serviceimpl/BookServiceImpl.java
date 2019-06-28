@@ -63,6 +63,8 @@ public class BookServiceImpl implements BookService {
             int orderMoney=0;
             for(int j=0;j<bookList.get(i).getOrderItems().size();++j)
             {
+                if(bookList.get(i).getOrderItems().get(j).getOrder().getOrderTime().compareTo(time1)<0||bookList.get(i).getOrderItems().get(j).getOrder().getOrderTime().compareTo(time2)>0)
+                    continue;
                 orderTimes+=bookList.get(i).getOrderItems().get(j).getNumber();
             }
             orderMoney=orderTimes*bookList.get(i).getPrice();
