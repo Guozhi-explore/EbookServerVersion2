@@ -3,7 +3,10 @@ package com.example.servlet.serviceimpl;
 import com.example.servlet.dao.BookDao;
 import com.example.servlet.dao.UserDao;
 import com.example.servlet.entity.User;
+import com.example.servlet.entity.staUser;
 import com.example.servlet.service.UserService;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,5 +68,32 @@ public class UserServiceImpl implements UserService {
     public User findUserById(Integer ID)
     {
         return userDao.findUserById(ID);
+    }
+
+    @Override
+    public List<staUser> StatisticUserData(String time1, String time2)
+    {
+        List<User> userList=userDao.findAll();
+        List<staUser> staUserList=new ArrayList<staUser>();
+        for(int i=0;i<userList.size();++i)
+        {
+            int orderTimes=0;
+            int orderMoney=0;
+            int orderBookNumber=0;
+            for(int j=0;j<userList.get(i).getOrderList().size();++j)
+            {
+                if(userList.get(i).getOrderList().get(j).getOrderTime().compareTo(time2)>0||userList.get(i).getOrderList().get(j).getOrderTime().compareTo(time1)<0)
+                    continue;
+                orderTimes++;
+                orderMoney+=userList.get(i).getOrderList().get(j).getOrderMoney();
+                for(int k=0;k<userList.get(i).getOrderList().get(j).getOrderItems().size();++k)
+                {
+                    orderBookNumber+=userList.get(i).getOrderList().get(j).getOrderItems().get(k).getNumber();
+                }
+            }
+            staUser stauser=new staUser(userList.get(i).getUser_id(),userList.get(i).getAccount(),userList.get(i).getMailbox(),orderTimes,orderMoney,orderBookNumber);
+            staUserList.add(stauser);
+        }
+        return staUserList;
     }
 }

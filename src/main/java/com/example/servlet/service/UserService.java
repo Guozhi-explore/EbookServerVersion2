@@ -1,6 +1,8 @@
 package com.example.servlet.service;
 
 import com.example.servlet.entity.User;
+import com.example.servlet.entity.staUser;
+
 import java.util.List;
 
 /**
@@ -14,4 +16,5 @@ public interface UserService {
     User JudgeLogin(String account,String password);
     Integer JudgeRegister(User user);
     User findUserById(Integer ID);
+    List<staUser> StatisticUserData(String time1, String time2);
 }

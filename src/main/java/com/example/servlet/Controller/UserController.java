@@ -4,6 +4,7 @@ package com.example.servlet.Controller;
 import com.example.servlet.dao.UserDao;
 import com.example.servlet.entity.Order;
 import com.example.servlet.entity.User;
+import com.example.servlet.entity.staUser;
 import com.example.servlet.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,17 @@ public class UserController {
         return userService.JudgeRegister(user);
     }
 
+    /**
+     *
+     * @param time1
+     * @param time2
+     * @return
+     */
+    @GetMapping(value="/statisticUserData")
+    public List<staUser> statisticUserData(String time1,String time2)
+    {
+        return userService.StatisticUserData(time1,time2);
+    }
 
 
 }
